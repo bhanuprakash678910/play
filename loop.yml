@@ -1,0 +1,11 @@
+---
+ - hosts: all
+   become: yes
+   tasks:
+   - name: installing packages
+     yum: 
+       name: "{{item}}"
+       state: present
+     when: ansible_distribution == "RedHat"
+     loop:
+        - [git,nano,wget,curl]
